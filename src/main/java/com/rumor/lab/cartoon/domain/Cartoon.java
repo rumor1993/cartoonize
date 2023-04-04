@@ -1,6 +1,7 @@
-package com.rumor.lab.domain;
+package com.rumor.lab.cartoon.domain;
 
-import com.rumor.lab.utils.PythonExecution;
+import com.rumor.lab.cartoon.infra.response.CartoonImageFile;
+import com.rumor.lab.cartoon.utils.PythonExecution;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

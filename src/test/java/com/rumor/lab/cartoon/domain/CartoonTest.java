@@ -1,6 +1,6 @@
-package com.rumor.lab.domain;
+package com.rumor.lab.cartoon.domain;
 
-import com.rumor.lab.utils.PythonExecution;
+import com.rumor.lab.cartoon.utils.PythonExecution;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

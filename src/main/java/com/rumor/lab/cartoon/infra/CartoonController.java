@@ -1,7 +1,7 @@
-package com.rumor.lab.infra.controller;
+package com.rumor.lab.cartoon.infra;
 
-import com.rumor.lab.appilcation.service.CartoonService;
-import com.rumor.lab.domain.CartoonImageFile;
+import com.rumor.lab.cartoon.appilcation.service.CartoonService;
+import com.rumor.lab.cartoon.infra.response.CartoonImageFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

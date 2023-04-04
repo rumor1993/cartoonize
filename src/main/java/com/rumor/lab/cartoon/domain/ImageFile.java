@@ -1,5 +1,6 @@
-package com.rumor.lab.domain;
+package com.rumor.lab.cartoon.domain;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -13,16 +14,17 @@ public class ImageFile {
     private String fileName;
     private String fileExtension;
 
+    @Value("${spring.web.resources.static-locations}")
+    private String staticResourceLocations;
+
     public ImageFile(MultipartFile filePart, String fileName) {
         this.filePart = filePart;
         this.fileName = fileName;
         this.fileExtension = this.getFileExtension();
     }
 
-    public final static String FILE_PATH = "/home/ubuntu/cartoonize/src/main/resources/static/images/";
-
     public void register() {
-        File file = new File(FILE_PATH + fileName + "." + this.fileExtension);
+        File file = new File(staticResourceLocations + fileName + "." + this.fileExtension);
         try (InputStream fileContent = filePart.getInputStream()) {
             Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
@@ -30,16 +32,12 @@ public class ImageFile {
         }
     }
 
-    public String getSaveResourcePath() {
-        return this.FILE_PATH + this.fileName + ".png";
-    }
-
-    public String getFileName() {
-        return this.fileName;
+    public String getFileFullName() {
+        return this.fileName + this.fileExtension;
     }
 
     public String getResourcePath() {
-        return this.FILE_PATH + this.fileName + "." + this.fileExtension;
+        return this.staticResourceLocations + this.fileName + "." + this.fileExtension;
     }
 
     public String getFileExtension() {

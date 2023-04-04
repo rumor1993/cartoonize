@@ -1,9 +1,8 @@
-package com.rumor.lab.domain;
+package com.rumor.lab.cartoon.domain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
 class ImageFileTest {
 
     @Test

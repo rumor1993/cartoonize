@@ -1,6 +1,6 @@
-package com.rumor.lab.utils;
+package com.rumor.lab.cartoon.utils;
 
-import com.rumor.lab.domain.ImageFile;
+import com.rumor.lab.cartoon.domain.ImageFile;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -13,7 +13,7 @@ public class PythonExecution {
     public Boolean excute(ImageFile imageFile) {
 
         try {
-            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getResourcePath(), "--save_path", imageFile.getSaveResourcePath());
+            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getResourcePath(), "--save_path", imageFile.getResourcePath());
             python.directory(new File("/home/ubuntu/photo2cartoon/test.py").getParentFile());
             Process process = python.start();
 

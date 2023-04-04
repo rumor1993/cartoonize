@@ -1,13 +1,12 @@
-package com.rumor.lab.domain;
+package com.rumor.lab.cartoon.infra.response;
+import com.rumor.lab.cartoon.domain.ImageFile;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CartoonImageFile {
-    public final static String FILE_SAVE_EXTENSION = ".png";
-
     private final ImageFile imageFile;
 
     public String getCartoonImagePath() {
-        return "/images/" + imageFile.getFileName() + FILE_SAVE_EXTENSION;
+        return "/resources/" + imageFile.getFileFullName();
     }
 }

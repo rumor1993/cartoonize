@@ -1,8 +1,8 @@
-package com.rumor.lab.appilcation.service;
+package com.rumor.lab.cartoon.appilcation.service;
 
-import com.rumor.lab.domain.Cartoon;
-import com.rumor.lab.domain.CartoonImageFile;
-import com.rumor.lab.domain.ImageFile;
+import com.rumor.lab.cartoon.domain.Cartoon;
+import com.rumor.lab.cartoon.infra.response.CartoonImageFile;
+import com.rumor.lab.cartoon.domain.ImageFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
