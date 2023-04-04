@@ -1,15 +1,14 @@
 package com.rumor.lab.domain;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.Part;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-@Component
 @RequiredArgsConstructor
 public class ImageFile {
     private final MultipartFile filePart;
