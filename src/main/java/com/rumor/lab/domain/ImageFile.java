@@ -32,7 +32,7 @@ public class ImageFile {
     }
 
     public String getFileFullName() {
-        return this.fileName + fileExtension;
+        return this.fileName + "." + fileExtension;
     }
 
     public String getResourcePath() {
@@ -42,7 +42,7 @@ public class ImageFile {
     public String getFileExtension() {
         String fileName = this.filePart.getOriginalFilename();
         if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0) {
-            return fileName.substring(fileName.lastIndexOf(".")+1);
+            return fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase();
         } else {
             return "";
         }
