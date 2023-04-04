@@ -1,6 +1,8 @@
 package com.rumor.lab.cartoon.utils;
 
 import com.rumor.lab.cartoon.domain.ImageFile;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -9,13 +11,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 @Component
+@RequiredArgsConstructor
 public class PythonExecution {
+
+    @Value("${python.script.path}")
+    public final String PYTHON_SCRIPT_PATH;
+
+
     public Boolean excute(ImageFile imageFile) {
 
         try {
             System.out.println(imageFile.getResourcePath());
             ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getResourcePath(), "--save_path", imageFile.getResourcePath());
-            python.directory(new File("/home/ubuntu/photo2cartoon/test.py").getParentFile());
+            python.directory(new File(PYTHON_SCRIPT_PATH).getParentFile());
             Process process = python.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
