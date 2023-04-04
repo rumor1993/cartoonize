@@ -1,6 +1,7 @@
 package com.rumor.lab.infra.controller;
 
 import com.rumor.lab.appilcation.service.CartoonService;
+import com.rumor.lab.domain.CartoonFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,8 +15,8 @@ public class CartoonController {
     private final CartoonService cartoonService;
 
     @PostMapping("/cartoon")
-    public void cartoon(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName) {
-        cartoonService.cartoonize(file, fileName);
+    public CartoonFile cartoon(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName) {
+        return cartoonService.cartoonize(file, fileName);
     }
 
 }
