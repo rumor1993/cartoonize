@@ -13,8 +13,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class CartoonService {
 
     private final Cartoon cartoon;
-    @Value("${spring.web.resources.static-locations}")
-    public final String staticResourceLocations;
+    private final String staticResourceLocations;
+
+    public CartoonService(Cartoon cartoon,
+                          @Value("${spring.web.resources.static-locations}") String staticResourceLocations) {
+        this.cartoon = cartoon;
+        this.staticResourceLocations = staticResourceLocations;
+    }
 
     public CartoonImageFile cartoonize(MultipartFile file, String fileName) {
         ImageFile imageFile = new ImageFile(file, fileName, staticResourceLocations);
