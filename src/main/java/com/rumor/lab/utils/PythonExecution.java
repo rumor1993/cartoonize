@@ -4,6 +4,7 @@ import com.rumor.lab.domain.ImageFile;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -13,7 +14,8 @@ public class PythonExecution {
         Boolean result = true;
 
         try {
-            ProcessBuilder python = new ProcessBuilder("python3", "/home/ubuntu/photo2cartoon/test.py", "--photo_path", "/home/ubuntu/photo2cartoon/images/photo_test.jpg" , "--save_path" ,"/home/ubuntu/photo2cartoon/images/photo_test_result.png");
+            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", "./images/photo_test.jpg" , "--save_path" ,"./images/photo_test_result.png");
+            python.directory(new File("/home/ubuntu/photo2cartoon/").getParentFile());
             Process process = python.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
