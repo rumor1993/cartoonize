@@ -1,6 +1,6 @@
 package com.rumor.lab.cartoon.domain;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.rumor.lab.cartoon.utils.Properties;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -14,9 +14,6 @@ public class ImageFile {
     private String fileName;
     private String fileExtension;
 
-    @Value("${spring.web.resources.static-locations}")
-    private String staticResourceLocations;
-
     public ImageFile(MultipartFile filePart, String fileName) {
         this.filePart = filePart;
         this.fileName = fileName;
@@ -24,7 +21,7 @@ public class ImageFile {
     }
 
     public void register() {
-        File file = new File(staticResourceLocations + fileName + "." + this.fileExtension);
+        File file = new File(Properties.staticResourceLocations + fileName + "." + this.fileExtension);
         try (InputStream fileContent = filePart.getInputStream()) {
             Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
@@ -33,11 +30,11 @@ public class ImageFile {
     }
 
     public String getFileFullName() {
-        return this.fileName + this.fileExtension;
+        return this.fileName + "." + this.fileExtension;
     }
 
     public String getResourcePath() {
-        return this.staticResourceLocations + this.fileName + "." + this.fileExtension;
+        return Properties.staticResourceLocations + this.fileName + "." + this.fileExtension;
     }
 
     public String getFileExtension() {
