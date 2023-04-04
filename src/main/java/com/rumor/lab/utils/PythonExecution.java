@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 @Component
 public class PythonExecution {
-    private final String FILE_SAVE_EXTENSION = ".png";
+    public final static String FILE_SAVE_EXTENSION = ".png";
 
 
     public Boolean excute(ImageFile imageFile) {
