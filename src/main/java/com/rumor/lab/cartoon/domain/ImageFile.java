@@ -1,6 +1,5 @@
 package com.rumor.lab.cartoon.domain;
 
-import com.rumor.lab.cartoon.utils.Properties;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -11,18 +10,21 @@ import java.nio.file.StandardCopyOption;
 
 public class ImageFile {
     private final MultipartFile filePart;
-    private String fileName;
-    private String fileExtension;
+    private final String fileName;
+    private final String staticResourceLocations;
+    private final String fileExtension;
 
-    public ImageFile(MultipartFile filePart, String fileName) {
+
+    public ImageFile(MultipartFile filePart, String fileName, String staticResourceLocations) {
         this.filePart = filePart;
         this.fileName = fileName;
+        this.staticResourceLocations = staticResourceLocations;
         this.fileExtension = this.getFileExtension();
     }
 
     public void register() {
-        File file = new File(Properties.staticResourceLocations + fileName + "." + this.fileExtension);
-        try (InputStream fileContent = filePart.getInputStream()) {
+        File file = new File(this.staticResourceLocations + this.fileName + "." + this.fileExtension);
+        try (InputStream fileContent = this.filePart.getInputStream()) {
             Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,7 +36,7 @@ public class ImageFile {
     }
 
     public String getResourcePath() {
-        return Properties.staticResourceLocations + this.fileName + "." + this.fileExtension;
+        return this.staticResourceLocations + this.fileName + "." + this.fileExtension;
     }
 
     public String getFileExtension() {
