@@ -15,7 +15,7 @@ public class ImageFile {
     private final MultipartFile filePart;
     private final String fileName;
 
-    public final static String FILE_PATH = "resources/static/images";
+    public final static String FILE_PATH = "/home/ubuntu/cartoonize/src/main/resources/static/images/";
 
     public void register() {
         File file = new File(FILE_PATH + fileName + "png");
