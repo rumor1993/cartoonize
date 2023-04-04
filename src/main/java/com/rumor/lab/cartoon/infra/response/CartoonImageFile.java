@@ -7,6 +7,6 @@ public class CartoonImageFile {
     private final ImageFile imageFile;
 
     public String getCartoonImagePath() {
-        return "/resources/" + imageFile.getFileFullName();
+        return "/resources/images/" + imageFile.getFileFullName();
     }
 }
