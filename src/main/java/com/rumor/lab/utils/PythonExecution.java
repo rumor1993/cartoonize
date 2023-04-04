@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 @Component
 public class PythonExecution {
     public Boolean excute(ImageFile imageFile) {
-        Boolean result = false;
 
         try {
             ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getFilePathAndFileName() + ".png", "--save_path", imageFile.getFilePathAndFileName() + ".png");
@@ -27,13 +26,13 @@ public class PythonExecution {
             int exitCode = process.waitFor();
             System.out.println("\nExited with error code : " + exitCode);
 
-            return result;
+            return exitCode == 0;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return result;
+        return false;
     }
 }
