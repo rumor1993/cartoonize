@@ -13,7 +13,7 @@ public class PythonExecution {
         Boolean result = false;
 
         try {
-            ProcessBuilder python = new ProcessBuilder("python", "/home/ubuntu/photo2cartoon/test.py", "--photo_path", imageFile.getFilePath() + imageFile.getFileName()  + ".png" , "--save_path" ,imageFile.getFilePath() + imageFile.getFileName() + "result.png");
+            ProcessBuilder python = new ProcessBuilder("python3", "/home/ubuntu/photo2cartoon/test.py", "--photo_path", "./images/photo_test.jpg" , "--save_path" ,"./images/photo_test_result.png");
             Process process = python.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
