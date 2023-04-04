@@ -25,11 +25,7 @@ public class ImageFile {
         }
     }
 
-    public String getFilePath() {
-        return FILE_PATH;
-    }
-
-    public String getFileName() {
-        return fileName;
+    public String getFilePathAndFileName() {
+        return FILE_PATH + fileName;
     }
 }
