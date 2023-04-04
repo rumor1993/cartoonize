@@ -17,7 +17,7 @@ public class ImageFile {
     public final static String FILE_PATH = "/home/ubuntu/cartoonize/src/main/resources/static/images/";
 
     public void register() {
-        File file = new File(FILE_PATH + fileName + "png");
+        File file = new File(FILE_PATH + fileName + ".png");
         try (InputStream fileContent = filePart.getInputStream()) {
             Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
