@@ -14,7 +14,7 @@ public class CartoonService {
     private final String staticResourceLocations;
 
     public CartoonService(Cartoon cartoon,
-                          @Value("${spring.web.resources.static-locations}") String staticResourceLocations) {
+                          @Value("${cartoon.resource.path}") String staticResourceLocations) {
         this.cartoon = cartoon;
         this.staticResourceLocations = staticResourceLocations;
     }
