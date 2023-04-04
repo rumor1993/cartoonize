@@ -14,7 +14,7 @@ public class PythonExecution {
         Boolean result = false;
 
         try {
-            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getFilePathAndFileName(), "--save_path", imageFile.getFilePathAndFileName());
+            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getFilePathAndFileName() + ".png", "--save_path", imageFile.getFilePathAndFileName() + ".png");
             python.directory(new File("/home/ubuntu/photo2cartoon/test.py").getParentFile());
             Process process = python.start();
 
