@@ -13,6 +13,7 @@ public class PythonExecution {
     public Boolean excute(ImageFile imageFile) {
 
         try {
+            System.out.println(imageFile.getResourcePath());
             ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getResourcePath(), "--save_path", imageFile.getResourcePath());
             python.directory(new File("/home/ubuntu/photo2cartoon/test.py").getParentFile());
             Process process = python.start();
