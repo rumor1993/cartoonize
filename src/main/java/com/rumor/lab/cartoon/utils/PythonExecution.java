@@ -11,12 +11,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 @Component
-@RequiredArgsConstructor
 public class PythonExecution {
 
-    @Value("${python.script.path}")
     public final String PYTHON_SCRIPT_PATH;
 
+    public PythonExecution(@Value("${python.script.path}") String PYTHON_SCRIPT_PATH) {
+        this.PYTHON_SCRIPT_PATH = PYTHON_SCRIPT_PATH;
+    }
 
     public Boolean excute(ImageFile imageFile) {
 
