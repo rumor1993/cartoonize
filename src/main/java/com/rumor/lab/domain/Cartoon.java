@@ -10,7 +10,7 @@ public class Cartoon {
 
     private final PythonExecution pythonExecution;
 
-    public CartoonFile cartoonize(ImageFile imageFile) {
+    public CartoonImageFile cartoonize(ImageFile imageFile) {
         // 파이썬을 실행하라
         Boolean isExecuted = pythonExecution.excute(imageFile);
 
@@ -19,6 +19,6 @@ public class Cartoon {
         }
 
         // 카툰 파일 전달
-        return new CartoonFile(imageFile);
+        return new CartoonImageFile(imageFile);
     }
 }

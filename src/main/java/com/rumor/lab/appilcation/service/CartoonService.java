@@ -1,7 +1,7 @@
 package com.rumor.lab.appilcation.service;
 
 import com.rumor.lab.domain.Cartoon;
-import com.rumor.lab.domain.CartoonFile;
+import com.rumor.lab.domain.CartoonImageFile;
 import com.rumor.lab.domain.ImageFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class CartoonService {
 
     private final Cartoon cartoon;
 
-    public CartoonFile cartoonize(MultipartFile file, String fileName) {
+    public CartoonImageFile cartoonize(MultipartFile file, String fileName) {
         ImageFile imageFile = new ImageFile(file, fileName);
         imageFile.register();
 
-        CartoonFile cartoonFile = cartoon.cartoonize(imageFile);
-        return cartoonFile;
+        CartoonImageFile cartoonImageFile = cartoon.cartoonize(imageFile);
+        return cartoonImageFile;
     }
 
 }

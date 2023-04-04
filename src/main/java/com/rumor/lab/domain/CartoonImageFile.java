@@ -3,10 +3,10 @@ package com.rumor.lab.domain;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CartoonFile {
+public class CartoonImageFile {
     private final ImageFile imageFile;
 
-    public String getCartoonFilePath() {
+    public String getCartoonImageFile() {
         return imageFile.getFilePathAndFileName();
     }
 }

@@ -34,6 +34,6 @@ class CartoonTest {
 //
 //        // 이미지를 만화화 해라
 //        Cartoon cartoon = new Cartoon();
-//        CartoonFile cartoonFile = cartoon.cartoonize(imageFile);
+//        CartoonImageFile cartoonFile = cartoon.cartoonize(imageFile);
     }
 }
