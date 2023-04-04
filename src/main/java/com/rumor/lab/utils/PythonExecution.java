@@ -15,7 +15,7 @@ public class PythonExecution {
 
         try {
             ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", "/home/ubuntu/photo2cartoon/images/photo_test.jpg" , "--save_path" ,"/home/ubuntu/photo2cartoon/images/photo_test_result.png");
-            python.directory(new File("/home/ubuntu/photo2cartoon/").getParentFile());
+            python.directory(new File("/home/ubuntu/photo2cartoon/test.py").getParentFile());
             Process process = python.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
