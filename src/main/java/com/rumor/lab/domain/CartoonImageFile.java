@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 public class CartoonImageFile {
     private final ImageFile imageFile;
 
-    public String getCartoonImageFile() {
-        return imageFile.getFilePathAndFileName();
+    public String getResourcePath() {
+        return imageFile.getResourcePath();
     }
 }
