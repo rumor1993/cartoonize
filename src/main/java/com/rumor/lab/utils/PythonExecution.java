@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 @Component
 public class PythonExecution {
     public Boolean excute(ImageFile imageFile) {
-        Boolean result = false;
+        Boolean result = true;
 
         try {
             ProcessBuilder python = new ProcessBuilder("python3", "/home/ubuntu/photo2cartoon/test.py", "--photo_path", "/home/ubuntu/photo2cartoon/images/photo_test.jpg" , "--save_path" ,"/home/ubuntu/photo2cartoon/images/photo_test_result.png");
@@ -24,8 +24,6 @@ public class PythonExecution {
 
             int exitCode = process.waitFor();
             System.out.println("\nExited with error code : " + exitCode);
-
-            result = exitCode == 0;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
