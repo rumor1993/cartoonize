@@ -10,13 +10,10 @@ import java.io.InputStreamReader;
 
 @Component
 public class PythonExecution {
-    public final static String FILE_SAVE_EXTENSION = ".png";
-
-
     public Boolean excute(ImageFile imageFile) {
 
         try {
-            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getResourcePath(), "--save_path", imageFile.getFileName() + FILE_SAVE_EXTENSION);
+            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getResourcePath(), "--save_path", imageFile.getSaveResourcePath());
             python.directory(new File("/home/ubuntu/photo2cartoon/test.py").getParentFile());
             Process process = python.start();
 

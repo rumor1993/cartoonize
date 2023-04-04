@@ -30,12 +30,12 @@ public class ImageFile {
         }
     }
 
-    public String getFileName() {
-        return this.fileName;
+    public String getSaveResourcePath() {
+        return this.FILE_PATH + this.fileName + ".png";
     }
 
-    public String getFileFullName() {
-        return this.fileName + "." + fileExtension;
+    public String getFileName() {
+        return this.fileName;
     }
 
     public String getResourcePath() {
