@@ -31,6 +31,10 @@ public class ImageFile {
         }
     }
 
+    public String getFileName() {
+        return this.fileName;
+    }
+
     public String getResourcePath() {
         return this.FILE_PATH + this.fileName + "." + this.fileExtension;
     }
