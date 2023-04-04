@@ -13,7 +13,8 @@ public class PythonExecution {
         Boolean result = true;
 
         try {
-            ProcessBuilder python = new ProcessBuilder("python3", "/home/ubuntu/photo2cartoon/test.py", "--photo_path", "/home/ubuntu/photo2cartoon/images/photo_test.jpg" , "--save_path" ,"/home/ubuntu/photo2cartoon/images/photo_test_result.png");
+//            ProcessBuilder python = new ProcessBuilder("python3", "/home/ubuntu/photo2cartoon/test.py", "--photo_path", "/home/ubuntu/photo2cartoon/images/photo_test.jpg" , "--save_path" ,"/home/ubuntu/photo2cartoon/images/photo_test_result.png");
+            ProcessBuilder python = new ProcessBuilder("python3", "/Users/rumor1993/IdeaProjects/lab/test1.py", "--photo_path", "/home/ubuntu/photo2cartoon/images/photo_test.jpg" , "--save_path" ,"/home/ubuntu/photo2cartoon/images/photo_test_result.png");
             Process process = python.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
