@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://api.rumor-lab.com")
+@CrossOrigin(origins = "http://rumor-lab.com")
 public class CartoonController {
 
     private final CartoonService cartoonService;
