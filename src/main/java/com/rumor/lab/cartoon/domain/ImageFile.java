@@ -36,7 +36,7 @@ public class ImageFile {
                     .asBufferedImage();
 
             // 최적화된 이미지를 저장
-            ImageIO.write(outputImage, "jpg", new File(this.getResourcePath()));
+            ImageIO.write(outputImage, "png", new File(this.getResourcePath()));
         } catch (IOException e) {
                 e.printStackTrace();
             }
