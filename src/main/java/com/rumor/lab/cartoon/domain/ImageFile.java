@@ -32,7 +32,7 @@ public class ImageFile {
 
             // 이미지 크기를 targetWidth x targetHeight로 조정
             BufferedImage outputImage = Thumbnails.of(inputImage)
-                    .size(1024, 1024)
+                    .size(512, 512)
                     .asBufferedImage();
 
             // 최적화된 이미지를 저장
