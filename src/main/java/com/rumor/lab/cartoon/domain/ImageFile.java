@@ -1,13 +1,14 @@
 package com.rumor.lab.cartoon.domain;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 
+@Slf4j
 public class ImageFile {
     private final MultipartFile filePart;
     private final String fileName;
@@ -23,12 +24,29 @@ public class ImageFile {
     }
 
     public void register() {
-        File file = new File(this.staticResourceLocations + this.fileName + "." + this.fileExtension);
-        try (InputStream fileContent = this.filePart.getInputStream()) {
-            Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            // 이미지 읽어오기
+            BufferedImage inputImage = ImageIO.read(new File(this.staticResourceLocations + this.fileName + "." + this.fileExtension));
+
+            // 이미지 크기를 256x256으로 조정
+            BufferedImage outputImage = resize(inputImage, 256, 256);
+
+            // JPEG 포맷으로 변경하여 출력 이미지 저장
+            save(outputImage, this.staticResourceLocations + this.fileName + ".jpg" , "jpg");
+        } catch (Exception e) {
+            log.error("save error ", e.getMessage());
         }
+    }
+
+
+    private BufferedImage resize(BufferedImage inputImage, int targetWidth, int targetHeight) {
+        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, inputImage.getType());
+        outputImage.getGraphics().drawImage(inputImage.getScaledInstance(targetWidth, targetHeight, BufferedImage.SCALE_SMOOTH), 0, 0, null);
+        return outputImage;
+    }
+
+    private void save(BufferedImage outputImage, String outputImagePath, String formatName) throws IOException {
+        ImageIO.write(outputImage, formatName, new File(outputImagePath));
     }
 
     public String getFileFullName() {
@@ -36,7 +54,7 @@ public class ImageFile {
     }
 
     public String getResourcePath() {
-        return this.staticResourceLocations + this.fileName + "." + this.fileExtension;
+        return this.staticResourceLocations + this.fileName + ".jpg";
     }
 
     public String getFileExtension() {
