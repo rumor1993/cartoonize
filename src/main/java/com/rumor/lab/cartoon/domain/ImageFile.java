@@ -32,9 +32,10 @@ public class ImageFile {
             BufferedImage outputImage = resize(inputImage, 256, 256);
 
             // JPEG 포맷으로 변경하여 출력 이미지 저장
-            save(outputImage, this.staticResourceLocations + this.fileName + ".jpg" , "jpg");
+            save(outputImage, this.getResourcePath(), "jpg");
         } catch (Exception e) {
             log.error("save error ", e.getMessage());
+            e.printStackTrace();
         }
     }
 
