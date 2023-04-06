@@ -1,14 +1,16 @@
 package com.rumor.lab.cartoon.domain;
 
-import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
-@Slf4j
 public class ImageFile {
     private final MultipartFile filePart;
     private final String fileName;
@@ -25,37 +27,27 @@ public class ImageFile {
 
     public void register() {
         try {
-            // 이미지 읽어오기
-            BufferedImage inputImage = ImageIO.read(new File(this.staticResourceLocations + this.fileName + "." + this.fileExtension));
+            // MultipartFile을 BufferedImage로 변환
+            BufferedImage inputImage = ImageIO.read(this.filePart.getInputStream());
 
-            // 이미지 크기를 256x256으로 조정
-            BufferedImage outputImage = resize(inputImage, 256, 256);
+            // 이미지 크기를 targetWidth x targetHeight로 조정
+            BufferedImage outputImage = Thumbnails.of(inputImage)
+                    .size(256, 256)
+                    .asBufferedImage();
 
-            // JPEG 포맷으로 변경하여 출력 이미지 저장
-            save(outputImage, this.getResourcePath(), "jpg");
-        } catch (Exception e) {
-            log.error("save error ", e.getMessage());
-            e.printStackTrace();
+            // 최적화된 이미지를 저장
+            ImageIO.write(outputImage, "jpg", new File(this.getResourcePath()));
+        } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-
-    private BufferedImage resize(BufferedImage inputImage, int targetWidth, int targetHeight) {
-        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, inputImage.getType());
-        outputImage.getGraphics().drawImage(inputImage.getScaledInstance(targetWidth, targetHeight, BufferedImage.SCALE_SMOOTH), 0, 0, null);
-        return outputImage;
-    }
-
-    private void save(BufferedImage outputImage, String outputImagePath, String formatName) throws IOException {
-        ImageIO.write(outputImage, formatName, new File(outputImagePath));
-    }
 
     public String getFileFullName() {
         return this.fileName + "." + this.fileExtension;
     }
 
     public String getResourcePath() {
-        return this.staticResourceLocations + this.fileName + ".jpg";
+        return this.staticResourceLocations + this.fileName + "." + this.fileExtension;
     }
 
     public String getFileExtension() {
