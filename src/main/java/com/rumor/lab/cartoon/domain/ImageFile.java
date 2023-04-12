@@ -3,7 +3,9 @@ package com.rumor.lab.cartoon.domain;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
+import javax.imageio.*;
+import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.stream.FileImageOutputStream;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,12 +34,17 @@ public class ImageFile {
                     .size(512, 512)
                     .asBufferedImage();
 
-            // 최적화된 이미지를 저장
-            ImageIO.write(outputImage, "png", new File(this.getResourcePath()));
+            // 이미지를 8비트 PNG로 저장
+            ImageWriter writer = ImageIO.getImageWritersByFormatName("png8").next();
+            ImageWriteParam writeParam = writer.getDefaultWriteParam();
+            ImageTypeSpecifier typeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_BYTE_INDEXED);
+            IIOMetadata metadata = writer.getDefaultImageMetadata(typeSpecifier, writeParam);
+            writer.setOutput(new FileImageOutputStream(new File(this.getResourcePath())));
+            writer.write(metadata, new IIOImage(outputImage, null, metadata), writeParam);
         } catch (IOException e) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
+    }
 
     public String getFileFullName() {
         return this.fileName + "." + this.fileExtension;
@@ -50,7 +57,7 @@ public class ImageFile {
     public String getFileExtension() {
         String fileName = this.filePart.getOriginalFilename();
         if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0) {
-            return fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase();
+            return fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
         } else {
             return "";
         }
