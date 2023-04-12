@@ -7,9 +7,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 
 public class ImageFile {
     private final MultipartFile filePart;
@@ -36,7 +33,7 @@ public class ImageFile {
                     .asBufferedImage();
 
             // 최적화된 이미지를 저장
-            ImageIO.write(outputImage, "png", new File(this.getResourcePath()));
+            ImageIO.write(outputImage, "jpg", new File(this.getResourcePath()));
         } catch (IOException e) {
                 e.printStackTrace();
             }
