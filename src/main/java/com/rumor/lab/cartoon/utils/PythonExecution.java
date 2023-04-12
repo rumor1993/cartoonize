@@ -21,7 +21,7 @@ public class PythonExecution {
 
     public Boolean excute(ImageFile imageFile) {
         try {
-            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--photo_path", imageFile.getResourcePath(), "--save_path", imageFile.getResourcePath());
+            ProcessBuilder python = new ProcessBuilder("python3", "test.py", "--input_image", imageFile.getResourcePath(), "--output_path", imageFile.getResourcePath());
             python.directory(new File(PYTHON_SCRIPT_PATH).getParentFile());
             Process process = python.start();
 
